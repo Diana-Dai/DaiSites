@@ -31,7 +31,7 @@
   a {
     @apply cursor-pointer;
   }
-  img {
+  video {
     @apply w-full;
   }
 }
@@ -50,7 +50,7 @@
     @apply opacity-100;
   }
   .card img {
-    @apply transition-transform duration-500 h-full;
+    @apply transition-transform duration-500;
   }
   .card-body {
     @apply py-2 px-3 text-base;
@@ -68,7 +68,11 @@
     @apply overflow-hidden border-t flex-grow;
   }
   .card-visit {
-    @apply opacity-0 transition-all duration-300 uppercase whitespace-nowrap absolute px-24 py-1 dark:text-gray-400 dark:bg-gray-100 bg-black text-white text-base top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+    @apply w-full opacity-0 transition-all duration-300 uppercase absolute py-1  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+    padding: 0 10%;
+  }
+  .card-visit div {
+    @apply text-center whitespace-nowrap dark:text-gray-400 dark:bg-gray-100 bg-black text-white text-base;
   }
   .text-muted {
     @apply text-gray;
@@ -90,7 +94,8 @@
   .ratio.ratio-mobile {
     --aspect-ratio: 181.2%;
   }
-  .ratio > img {
+  .ratio > img,
+  .ratio > video {
     @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center;
   }
   .button {

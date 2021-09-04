@@ -1,19 +1,19 @@
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
+/* eslint-disable import/no-extraneous-dependencies */
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const paths = require("./paths");
+const paths = require('./paths');
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + "/js/index.js"],
+  entry: [`${paths.src}/js/index.js`],
 
   // Where webpack outputs the assets and bundles
   output: {
     path: paths.build,
-    filename: "[name].bundle.js",
-    publicPath: "",
+    filename: '[name].bundle.js',
+    publicPath: '',
   },
 
   // Customize the webpack build process
@@ -26,9 +26,9 @@ module.exports = {
       patterns: [
         {
           from: paths.public,
-          to: "assets",
+          to: 'assets',
           globOptions: {
-            ignore: ["*.DS_Store"],
+            ignore: ['*.DS_Store'],
           },
           noErrorOnMissing: true,
         },
@@ -37,66 +37,71 @@ module.exports = {
 
     // Generates an HTML file from a template
     new HtmlWebpackPlugin({
-      title: "home",
-      favicon: paths.src + "/assets/imgs/favicon.png",
-      template: paths.src + "/index.ejs", // template file
-      filename: "index.html", // output file
+      title: 'home',
+      favicon: `${paths.src}/assets/imgs/favicon.ico`,
+      template: `${paths.src}/index.ejs`, // template file
+      filename: 'index.html', // output file
     }),
     // Generates an HTML file from a template
     new HtmlWebpackPlugin({
-      title: "about",
-      favicon: paths.src + "/assets/imgs/favicon.png",
-      template: paths.src + "/about.ejs", // template file
-      filename: "about.html", // output file
+      title: 'about',
+      favicon: `${paths.src}/assets/imgs/favicon.png`,
+      template: `${paths.src}/about.ejs`, // template file
+      filename: 'about.html', // output file
     }),
     new HtmlWebpackPlugin({
-      title: "contact",
-      favicon: paths.src + "/assets/imgs/favicon.png",
-      template: paths.src + "/contact.ejs", // template file
-      filename: "contact.html", // output file
+      title: 'contact',
+      favicon: `${paths.src}/assets/imgs/favicon.png`,
+      template: `${paths.src}/contact.ejs`, // template file
+      filename: 'contact.html', // output file
     }),
-    // ESLint configuration
-    // new ESLintPlugin({
-    //   files: ['.', 'src', 'config'],
-    // formatter: 'table',
-    // }),
   ],
 
   // Determine how modules within the project are treated
   module: {
     rules: [
       // JavaScript: Use Babel to transpile JavaScript files
-      { test: /\.js$/, use: ["babel-loader"] },
+      { test: /\.js$/, use: ['babel-loader'] },
       {
         test: /\.ejs$/,
-        loader: "ejs-compiled-loader",
+        loader: 'ejs-compiled-loader',
       },
       // Images: Copy image files to build folder
       // Produce all the background in css to a new file
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
         generator: {
-          filename: "assets/background/[name][ext]",
+          filename: 'assets/background/[name][ext]',
         },
       },
 
       // Fonts and SVGs: Inline files
       {
         test: /\.(woff(2)?|eot|ttf|otf)$/,
-        type: "asset/resource",
+        type: 'asset/resource',
         generator: {
-          filename: "assets/font/[name][ext]",
+          filename: 'assets/font/[name][ext]',
+        },
+      },
+      {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: `${paths.src}`, // 指定检查的目录
+        options: {
+          // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
+          formatter: require('eslint-friendly-formatter'), // 指定错误报告的格式规范
         },
       },
     ],
   },
 
   resolve: {
-    modules: [paths.src, "node_modules"],
-    extensions: [".js", ".jsx", ".json"],
+    modules: [paths.src, 'node_modules'],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
-      "@": paths.src,
+      '@': paths.src,
     },
   },
 };
