@@ -127,7 +127,7 @@
   }
   @keyframes scroll {
     from {
-      transform: translateY(-1000%);
+      transform: translateY(-500%);
     }
     to {
       transform: translateY(0);

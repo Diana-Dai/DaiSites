@@ -1,35 +1,44 @@
-<% include common/header.html %>
-    <div class="body mt-24">
-        <div class="contact mx-auto border-2 px-10 py-10">
-            <form action="https://formspree.io/f/myyllwrv" method="POST">
-                <div class=" pb-4">
-                    <label class="block" for="name">
-                        Name:
-                    </label>
-                    <input type="text" name="name" placeholder="J Smith" required="">
-                </div>
-                <div class=" pb-4">
-                    <label class="block" for="_replyto">
-                        Email:
-                    </label>
-                    <input type="email" name="_replyto" placeholder="j.smith@gmail.com" required="">
-                </div>
-                <div class=" pb-4">
-                    <label class="block" for="message-contact">
-                        Tell me about your project:
-                    </label>
-                    <textarea class="h-52" name="message-contact"
-                        placeholder="Hi Diana, I've got a website project that needs delivering professionally, on time and on budget."
-                        required=""></textarea>
-                </div>
-                <!-- your other form fields go here -->
-                <button class="button" type="submit"><span>Contact Me Now</span></button><span class="italic">I'll reply
-                    as soon as I
-                    can!</span>
-            </form>
-        </div>
-        <span class="leave top-56 -left-40"></span>
-        <span class="leave bottom-16  -right-28"></span>
+<% include common/head.html %>
+    </head>
 
-    </div>
-    <% include common/footer.html %>
+    <% include common/header.html %>
+
+        <body class="font-sans text-dark dark:text-gray-300 dark:bg-gray-900 w-full">
+            <div class="body mt-24">
+                <div class="contact mx-auto border-2 px-10 py-10">
+                    <form action="https://formspree.io/f/myyllwrv" method="POST">
+                        <div class=" pb-4">
+                            <label class="block" for="name">
+                                Name:
+                            </label>
+                            <input type="text" name="name" placeholder="J Smith" required="">
+                        </div>
+                        <div class=" pb-4">
+                            <label class="block" for="_replyto">
+                                Email:
+                            </label>
+                            <input type="email" name="_replyto" placeholder="j.smith@gmail.com" required="">
+                        </div>
+                        <div class=" pb-4">
+                            <label class="block" for="message-contact">
+                                Tell me about your project:
+                            </label>
+                            <textarea class="h-52" name="message-contact"
+                                placeholder="Hi Diana, I've got a website project that needs delivering professionally, on time and on budget."
+                                required=""></textarea>
+                        </div>
+                        <!-- your other form fields go here -->
+                        <button class="button" type="submit"><span>Contact Me Now</span></button><span
+                            class="italic">I'll
+                            reply
+                            as soon as I
+                            can!</span>
+                    </form>
+                </div>
+                <span class="leave top-56 -left-40"></span>
+                <span class="leave bottom-16  -right-28"></span>
+
+            </div>
+        </body>
+
+        <% include common/footer.html %>

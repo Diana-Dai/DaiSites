@@ -3,32 +3,35 @@ import "../css/style.css";
 import "../assets/font/iconfont.css";
 
 // darkMode
-function darkMode() {
-  document.getElementById("dark-toggler").addEventListener("click", (e) => {
-    document.getElementById("dark-toggler").classList.toggle("active");
-    document.documentElement.classList.toggle("dark");
-    if (document.documentElement.classList.contains("dark")) {
-      // Whenever the user explicitly chooses dark mode
-      localStorage.theme = "dark";
+const darkModeCommand = {
+  execute: function () {
+    document.getElementById("dark-toggler").addEventListener("click", (e) => {
+      document.getElementById("dark-toggler").classList.toggle("active");
+      document.documentElement.classList.toggle("dark");
+      if (document.documentElement.classList.contains("dark")) {
+        // Whenever the user explicitly chooses dark mode
+        localStorage.theme = "dark";
+      } else {
+        // Whenever the user explicitly chooses light mode
+        localStorage.theme = "light";
+      }
+    });
+    this.changeStorageData();
+  },
+  changeStorageData() {
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+      document.getElementById("dark-toggler").classList.add("active");
     } else {
-      // Whenever the user explicitly chooses light mode
-      localStorage.theme = "light";
+      document.documentElement.classList.remove("dark");
     }
-  });
-
-  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-    document.getElementById("dark-toggler").classList.add("active");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-}
-darkMode();
+  },
+};
 
 const StartTextHighLightCommand = {
   execute: function () {
@@ -50,7 +53,18 @@ const StartTextHighLightCommand = {
     });
   },
 };
-
+const IsLoadedCommand = {
+  execute: function () {
+    // Hide preloading
+    setTimeout(() => {
+      document.getElementById("preload").classList.add("close");
+    }, 1500);
+    // Show main documents
+    setTimeout(() => {
+      document.body.classList.remove("is_loading");
+    }, 400);
+  },
+};
 class OnloadCommander {
   constructor() {
     this.stack = [];
@@ -69,5 +83,19 @@ class OnloadCommander {
 
 const commander = new OnloadCommander();
 commander.add(StartTextHighLightCommand);
-
+commander.add(IsLoadedCommand);
+commander.add(darkModeCommand);
 commander.init();
+
+const cloneNodes = {
+  execute: function () {
+    for (var i = 0; i < 10; i++) {
+      const clone = document.getElementById("project_list").cloneNode(true);
+
+      clone.id = "clone" + i;
+      document.getElementById("body").appendChild(clone);
+    }
+  },
+};
+
+cloneNodes.execute();
