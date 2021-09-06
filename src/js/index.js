@@ -74,11 +74,12 @@ const LazyVideosCommand = {
     });
 
     // Start observing
-    document.querySelectorAll('.lazy').forEach((item) => {
+    document.querySelectorAll('video.lazy').forEach((item) => {
       intersectionObserver.observe(item);
     });
   },
 };
+
 const IsLoadedCommand = {
   execute() {
     // Hide preloading
