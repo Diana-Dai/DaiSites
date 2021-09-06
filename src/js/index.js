@@ -39,17 +39,42 @@ const StartTextHighLightCommand = {
     const intersectionObserver = new IntersectionObserver((entries) => {
       // When the target item is in viewPoint
       entries.forEach((item) => {
-        if (item.intersectionRatio > 0) {
+        if (item.isIntersecting) {
           // console.log(entries[0].target);
           item.target.classList.add('active');
-          return;
+          intersectionObserver.unobserve(item.target);
         }
-        item.target.classList.remove('active');
+      });
+    });
+    // Start observing
+    document.querySelectorAll('.highlight').forEach((item) => {
+      intersectionObserver.observe(item);
+    });
+  },
+};
+const LazyVideosCommand = {
+  execute() {
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      // When the target item is in viewPoint
+      entries.forEach((video) => {
+        if (video.isIntersecting) {
+          const keys = Object.keys(video.target.children);
+          keys.forEach((source) => {
+            const videoSource = video.target.children[source];
+            if (typeof videoSource.tagName === 'string' && videoSource.tagName === 'SOURCE') {
+              videoSource.src = videoSource.dataset.src;
+            }
+          });
+
+          video.target.load();
+          video.target.classList.remove('lazy');
+          intersectionObserver.unobserve(video.target);
+        }
       });
     });
 
     // Start observing
-    document.querySelectorAll('.highlight').forEach((item) => {
+    document.querySelectorAll('.lazy').forEach((item) => {
       intersectionObserver.observe(item);
     });
   },
@@ -57,14 +82,17 @@ const StartTextHighLightCommand = {
 const IsLoadedCommand = {
   execute() {
     // Hide preloading
-    setTimeout(() => {
-      document.getElementById('preload').classList.add('close');
-    }, 1500);
-    // Show main documents
-    setTimeout(() => {
-      document.body.classList.remove('is_loading');
-    }, 400);
+    if (document.getElementById('preload')) {
+      setTimeout(() => {
+        document.getElementById('preload').classList.add('close');
+      }, 1500);
+      // Show main documents
+      setTimeout(() => {
+        document.body.classList.remove('is_loading');
+      }, 400);
+    }
   },
+
 };
 class OnloadCommander {
   constructor() {
@@ -88,6 +116,7 @@ const commander = new OnloadCommander();
 commander.add(StartTextHighLightCommand);
 commander.add(IsLoadedCommand);
 commander.add(darkModeCommand);
+commander.add(LazyVideosCommand);
 commander.init();
 
 // const cloneNodes = {

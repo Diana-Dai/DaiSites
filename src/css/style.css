@@ -31,8 +31,11 @@
   a {
     @apply cursor-pointer;
   }
-  video {
+  img,video {
     @apply w-full;
+  }
+  .no-js .lazy{
+    @apply hidden;
   }
 }
 
