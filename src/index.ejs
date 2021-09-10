@@ -1,136 +1,4 @@
 <% include common/head.html %>
-    <style>
-        .is_loading header {
-            display: none;
-
-        }
-
-        .is_loading #body {
-            display: none;
-        }
-
-        /*= Preload */
-        @keyframes widthSegment {
-            from {
-                width: 0%;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes heightSegment {
-            from {
-                height: 0%;
-            }
-
-            to {
-                height: 100%;
-            }
-        }
-
-        @keyframes preloading {
-            from {
-                width: 100px;
-                height: 100px;
-                top: 50%;
-                left: 50%;
-                margin: -50px 0 0 -50px;
-            }
-
-            to {
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                margin: 0;
-            }
-        }
-
-        #preload {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 99999999999999999;
-        }
-
-        #preload.close {
-            display: none;
-        }
-
-        #preloader {
-            width: 7rem;
-            height: 7rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -3.5rem;
-            margin-left: -3.5rem;
-            animation: preloading 0.25s ease-out 1.23s both;
-        }
-
-        #preloader-content {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            box-shadow: white 0px 0px 0px 2005px;
-
-        }
-
-        .dark #preloader-content {
-            box-shadow: black 0px 0px 0px 2005px;
-        }
-
-        #preloader:before,
-        #preloader:after,
-        #preloader-content:before,
-        #preloader-content:after {
-            content: " ";
-            display: block;
-            background-color: black;
-            position: absolute;
-        }
-
-        .dark #preloader:before,
-        .dark #preloader:after,
-        .dark #preloader-content:before,
-        .dark #preloader-content:after {
-            background-color: white;
-
-        }
-
-        #preloader:before {
-            width: 0;
-            height: 1px;
-            animation: widthSegment 0.25s linear both;
-        }
-
-        #preloader:after {
-            height: 0;
-            right: 0;
-            width: 1px;
-            animation: heightSegment 0.25s linear 0.25s both;
-        }
-
-        #preloader-content:before {
-            width: 0;
-            right: 0;
-            bottom: 0;
-            height: 1px;
-            animation: widthSegment 0.25s linear 0.5s both;
-        }
-
-        #preloader-content:after {
-            height: 0;
-            left: 0;
-            bottom: 0;
-            width: 1px;
-            animation: heightSegment 0.25s linear 0.75s both;
-        }
-    </style>
     </head>
     <% include common/header.html %>
         <body class=" w-full text-dark dark:text-gray-300 dark:bg-gray-900 relative">
@@ -764,10 +632,67 @@
                         </svg>
                     </div>            
                 </div>
-                <div class="flex-col items-center justify-center">
-                    <div>
-                        <p class="text-primary">What I Do</p>
-                        <p>Specializing in</p>
+                <div class="mt-20 mx-40 flex flex-col items-center justify-center">
+                    <div class="inline-block text-center">
+                        <p class="text-primary uppercase">What I Do</p>
+                        <p class="text-4xl leading-relaxed font-bold">Specializing in</p>
+                        <div class="flex flex-wrap items-center justify-center">
+                            <div class="w-1/3 flex items-center p-4">
+                                <div class="bg-orange rounded-xl bg-opacity-30 w-20 h-20 flex justify-center items-center">
+                                    <i class="iconfont icon-html text-orange text-2xl" aria-label="HTML & CSS logo"></i>
+                                </div>
+                                <div class="flex-1 text-left ml-6">
+                                    <p class="font-bold"> HTML and CSS</p>
+                                    <p>
+                                        create websites compatible with 
+                                        all major browsers on various devices
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="w-1/3 flex items-center p-4">
+                                <div class="bg-secondary rounded-full bg-opacity-30 w-20 h-20 flex justify-center items-center">
+                                    <i class="iconfont icon-js text-secondary text-2xl" aria-label="JavaScript logo"></i>
+                                </div>
+                                <div class="flex-1 text-left ml-6">
+                                    <p class="font-bold">  JavaScript & jQuery</p>
+                                    <p>
+                                        implement high performance websites with clean js code
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="w-1/3 flex items-center p-4">
+                                <div class="flex justify-center items-center w-20 h-20 semicircle">
+                                    <i class="iconfont icon-accessibility text-red-500 text-2xl mb-10 ml-6" aria-label="accessibility logo"></i>
+                                </div>
+                                <div class="flex-1 text-left ml-6">
+                                    <p class="font-bold">Web Accessibility</p>
+                                    <p>
+                                        Implementing techniques allowing Web Accessibility
+                                         for those with disabilities
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="w-1/3 flex items-center p-4">
+                                <div class="flex justify-center items-center w-20 h-20 relative triangle">
+                                    <i class="absolute top-1/2 -mt-1 iconfont icon-devices text-2xl"></i>
+                                </div>
+                                <div class="flex-1 text-left ml-6">
+                                    <p class="font-bold">Responsive Web Design</p>
+                                    <p>
+                                     adjust to desktop, tablet, and mobile platforms 
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="w-1/3 flex items-center p-4">
+                                <div>
+
+                                </div>
+                                <div>
+                                    <p>Search-Engine Optimized </p>
+                                    <p>
+                                        Creating websites that are Search-Engine Optimized (SEO) to improve the quality and volume of traffic                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

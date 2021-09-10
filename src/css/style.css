@@ -164,3 +164,17 @@ svg .animation{
   transform-origin: top;
   animation: rotate-5-reverse 2s linear infinite alternate ;
 }
+.triangle{
+  color: rgb(54%, 22%, 46%);
+}
+.triangle::before{
+  content:'';
+  color: rgba(54%, 22%, 46%,0.3);
+  margin-top: -2.5rem;
+  border: 3rem solid transparent;
+  border-bottom: 4rem solid currentColor;
+}
+.semicircle::before{
+  content:'';
+  @apply absolute transform rotate-45 bg-red-500 rounded-b-full bg-opacity-30 w-20 h-10
+}
