@@ -14,14 +14,15 @@
     @apply border-current;
   }
   html {
-    font-size: 16px;
+    font-size: 1.2vw;
     font-family: 'Ubuntu', sans-serif;
     font-display: optional;
 
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     html {
-      font-size: 15px;
+      font-size: 4vw;
+
     }
   }
   body {
@@ -42,6 +43,9 @@
 }
 
 @layer components {
+  .wrapper{
+    @apply px-10 md:px-40 ;
+  }
   .ratio {
     @apply relative inline-block w-full;
   }
@@ -64,7 +68,7 @@
     @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center;
   }
   .btn {
-    @apply relative text-white font-bold text-sm px-10 py-3 mx-1 inline-block overflow-hidden rounded-2xl transition-all duration-300;
+    @apply relative text-white font-bold text-sm px-10 py-3 mx-1 my-2 inline-block overflow-hidden rounded-2xl transition-all duration-300;
   }
   .btn:before{
     @apply absolute bottom-0 left-0 w-full h-full bg-white rounded-2xl transition-all duration-300; 
@@ -178,3 +182,4 @@ svg .animation{
   content:'';
   @apply absolute transform rotate-45 bg-red-500 rounded-b-full bg-opacity-30 w-20 h-10
 }
+
