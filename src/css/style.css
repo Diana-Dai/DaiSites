@@ -64,32 +64,16 @@
     @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center;
   }
   .btn {
-    @apply bg-white dark:bg-gray-900 border-2 px-4 py-1 mx-1 relative overflow-hidden inline-block transition-transform duration-300 rounded-full;
+    @apply relative text-white font-bold text-sm px-10 py-3 mx-1 inline-block overflow-hidden rounded-2xl transition-all duration-300;
   }
-  .btn::before {
-    @apply bg-black dark:bg-gray-300;
-    content: "";
-    position: absolute;
-    width: 105%;
-    top: -50%;
-    left: 0;
-    height: 200%;
-    transition: 0.3s linear;
-    transform: translateY(100%);
-    clip-path: ellipse(60% 50%);
+  .btn:before{
+    @apply absolute bottom-0 left-0 w-full h-full bg-white rounded-2xl transition-all duration-300; 
+    content:'';
+    transform:translateY(100%);
   }
-  .btn span {
-    @apply z-10 relative transition-all duration-300  dark:text-gray-300;
+  .btn:hover:before{
+    @apply translate-y-0;
   }
-  .btn.active span,
-  .btn:hover span {
-    @apply text-white dark:text-gray-900;
-  }
-  .btn.active::before,
-  .btn:hover::before {
-    @apply transform translate-y-0;
-  }
- 
 }
 
 .background{ 
@@ -104,9 +88,9 @@ svg .animation{
   transform-origin: bottom;
 }
 #TREES-2 #t2-left{
-  animation: tree-left 4s ease-in-out infinite alternate;
+  animation: rotate-5 4s ease-in-out infinite alternate;
 }
-@keyframes tree-left {
+@keyframes rotate-5 {
   50% {
     transform: rotateZ(5deg);
   }
@@ -114,11 +98,18 @@ svg .animation{
     transform: rotateZ(-5deg);
   }
 }
-
-#TREES-2 #t2-right{
-  animation: tree-right 4s linear infinite alternate;
+@keyframes rotate-5-reverse {
+  50% {
+    transform: rotateZ(-5deg);
+  }
+  100% {
+    transform: rotateZ(5deg);
+  }
 }
-@keyframes tree-right {
+#TREES-2 #t2-right{
+  animation: rotate-3 4s linear infinite alternate;
+}
+@keyframes rotate-3 {
   50% {
     transform: rotateZ(3deg);
   }
@@ -127,15 +118,15 @@ svg .animation{
   }
 }
 #TREES-1 #t1-left{
-  animation: tree-left-2 4s linear infinite alternate;
+  animation: rotate-1 4s linear infinite alternate;
 }
 #TREES-1 #t1-right{
-  animation: tree-left 4s linear infinite alternate;
+  animation: rotate-5 4s linear infinite alternate;
 }
 #TREES-1 #t1-middle{
-  animation: tree-middle 4s linear infinite alternate ;
+  animation: rotate-2 4s linear infinite alternate ;
 }
-@keyframes tree-middle {
+@keyframes rotate-2 {
   50% {
     transform: rotateZ(2deg);
   }
@@ -143,7 +134,7 @@ svg .animation{
     transform: rotateZ(-2deg);
   }
 }
-@keyframes tree-left-2 {
+@keyframes rotate-1 {
   50% {
     transform: rotateZ(1deg);
   }
@@ -153,16 +144,9 @@ svg .animation{
 }
 #BOY-2 #feet{
   transform-origin: left;
-  animation: feet 1s linear infinite alternate ;
+  animation: rotate-5 0.5s linear infinite alternate ;
 }
-@keyframes feet {
-  50% {
-    transform: rotateZ(5deg);
-  }
-  100% {
-    transform: rotateZ(-5deg);
-  }
-}
+
 #BOY-1 {
   transform-origin: bottom left;
   animation: boy 3s linear infinite alternate ;
@@ -171,6 +155,12 @@ svg .animation{
   50% {
     transform: scale(1.03);
   }
-  100% {
-  }
+}
+#GIRL #hand{
+  transform-origin: top right;
+  animation: rotate-5 2s linear infinite alternate ;
+}
+#GIRL #hand-2{
+  transform-origin: top;
+  animation: rotate-5-reverse 2s linear infinite alternate ;
 }

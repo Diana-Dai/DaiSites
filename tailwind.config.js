@@ -17,6 +17,10 @@ module.exports = {
       borderRadius: {
         3: '3rem',
       },
+      colors: {
+        primary: '#FFC244',
+        secondary: '#8372E7',
+      },
     },
   },
   variants: {
