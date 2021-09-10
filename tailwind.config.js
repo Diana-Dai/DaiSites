@@ -1,21 +1,21 @@
 module.exports = {
-  mode: "jit",
-  purge: ["src/*.ejs", "src/common/*.html"],
-  darkMode: "class",
+  mode: 'jit',
+  purge: ['src/*.ejs', 'src/common/*.html'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontSize: {
-        0: "0",
+        0: '0',
       },
       spacing: {
-        0.8: "1.25rem",
-        1.25: "0.3rem",
+        0.8: '1.25rem',
+        1.25: '0.3rem',
       },
       lineHeight: {
-        11: "3rem",
+        11: '4rem',
       },
       borderRadius: {
-        3: "3rem",
+        3: '3rem',
       },
     },
   },

@@ -80,21 +80,21 @@ const LazyVideosCommand = {
   },
 };
 
-const IsLoadedCommand = {
-  execute() {
-    // Hide preloading
-    if (document.getElementById('preload')) {
-      setTimeout(() => {
-        document.getElementById('preload').classList.add('close');
-      }, 1500);
-      // Show main documents
-      setTimeout(() => {
-        document.body.classList.remove('is_loading');
-      }, 400);
-    }
-  },
+// const IsLoadedCommand = {
+//   execute() {
+//     // Hide preloading
+//     if (document.getElementById('preload')) {
+//       setTimeout(() => {
+//         document.getElementById('preload').classList.add('close');
+//       }, 1500);
+//       // Show main documents
+//       setTimeout(() => {
+//         document.body.classList.remove('is_loading');
+//       }, 400);
+//     }
+//   },
 
-};
+// };
 class OnloadCommander {
   constructor() {
     this.stack = [];
@@ -115,7 +115,7 @@ class OnloadCommander {
 
 const commander = new OnloadCommander();
 commander.add(StartTextHighLightCommand);
-commander.add(IsLoadedCommand);
+// commander.add(IsLoadedCommand);
 commander.add(darkModeCommand);
 commander.add(LazyVideosCommand);
 commander.init();
