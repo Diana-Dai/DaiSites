@@ -43,6 +43,9 @@
 }
 
 @layer components {
+  .visiblely-hidden{
+    position:absolute;clip:rect(0,0,0,0);
+  }
   .wrapper{
     @apply md:mt-20 px-10 md:px-40 flex flex-col items-center justify-center;
   }
