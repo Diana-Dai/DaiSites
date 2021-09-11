@@ -4,54 +4,36 @@ import '../css/style.css';
 import '../assets/font/iconfont.css';
 
 // darkMode
-const darkModeCommand = {
-  execute() {
-    document.getElementById('dark-toggler').addEventListener('click', () => {
-      document.getElementById('dark-toggler').classList.toggle('active');
-      document.documentElement.classList.toggle('dark');
-      if (document.documentElement.classList.contains('dark')) {
-        // Whenever the user explicitly chooses dark mode
-        localStorage.theme = 'dark';
-      } else {
-        // Whenever the user explicitly chooses light mode
-        localStorage.theme = 'light';
-      }
-    });
-    this.changeStorageData();
-  },
-  changeStorageData() {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === 'dark'
-      || (!('theme' in localStorage)
-        && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark');
-      document.getElementById('dark-toggler').classList.add('active');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  },
-};
+// const darkModeCommand = {
+//   execute() {
+//     document.getElementById('dark-toggler').addEventListener('click', () => {
+//       document.getElementById('dark-toggler').classList.toggle('active');
+//       document.documentElement.classList.toggle('dark');
+//       if (document.documentElement.classList.contains('dark')) {
+//         // Whenever the user explicitly chooses dark mode
+//         localStorage.theme = 'dark';
+//       } else {
+//         // Whenever the user explicitly chooses light mode
+//         localStorage.theme = 'light';
+//       }
+//     });
+//     this.changeStorageData();
+//   },
+//   changeStorageData() {
+//     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+//     if (
+//       localStorage.theme === 'dark'
+//       || (!('theme' in localStorage)
+//         && window.matchMedia('(prefers-color-scheme: dark)').matches)
+//     ) {
+//       document.documentElement.classList.add('dark');
+//       document.getElementById('dark-toggler').classList.add('active');
+//     } else {
+//       document.documentElement.classList.remove('dark');
+//     }
+//   },
+// };
 
-const StartTextHighLightCommand = {
-  execute() {
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      // When the target item is in viewPoint
-      entries.forEach((item) => {
-        if (item.isIntersecting) {
-          // console.log(entries[0].target);
-          item.target.classList.add('active');
-          intersectionObserver.unobserve(item.target);
-        }
-      });
-    });
-    // Start observing
-    document.querySelectorAll('.highlight').forEach((item) => {
-      intersectionObserver.observe(item);
-    });
-  },
-};
 const LazyVideosCommand = {
   execute() {
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -112,23 +94,24 @@ class OnloadCommander {
     this.stack.push(action);
   }
 }
-
+const playVideoCommand = {
+  execute() {
+    document.getElementById('porfolio').addEventListener('mouseover', (e) => {
+      console.log(e.target);
+      if (typeof e.target.tagName === 'string' && e.target.tagName === 'VIDEO') {
+        e.target.play();
+      }
+    });
+    document.getElementById('porfolio').addEventListener('mouseout', (e) => {
+      if (typeof e.target.tagName === 'string' && e.target.tagName === 'VIDEO') {
+        e.target.pause();
+      }
+    });
+  },
+};
 const commander = new OnloadCommander();
-commander.add(StartTextHighLightCommand);
 // commander.add(IsLoadedCommand);
-commander.add(darkModeCommand);
+// commander.add(darkModeCommand);
 commander.add(LazyVideosCommand);
+commander.add(playVideoCommand);
 commander.init();
-
-// const cloneNodes = {
-//   execute() {
-//     for (let i = 0; i < 10; i++) {
-//       const clone = document.getElementById('project_list').cloneNode(true);
-
-//       clone.id = `clone${i}`;
-//       document.getElementById('body').appendChild(clone);
-//     }
-//   },
-// };
-
-// cloneNodes.execute();

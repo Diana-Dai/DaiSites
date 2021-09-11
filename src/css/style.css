@@ -44,28 +44,7 @@
 
 @layer components {
   .wrapper{
-    @apply px-10 md:px-40 ;
-  }
-  .ratio {
-    @apply relative inline-block w-full;
-  }
-  .ratio::before {
-    content: "";
-    padding-top: var(--aspect-ratio);
-    @apply block;
-  }
-  .ratio.ratio-sm {
-    --aspect-ratio: 66.6%;
-  }
-  .ratio.ratio-desktop {
-    --aspect-ratio: 53.6%;
-  }
-  .ratio.ratio-mobile {
-    --aspect-ratio: 181.2%;
-  }
-  .ratio > img,
-  .ratio > video {
-    @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center;
+    @apply md:mt-20 px-10 md:px-40 flex flex-col items-center justify-center;
   }
   .btn {
     @apply relative text-white font-bold text-sm px-10 py-3 mx-1 my-2 inline-block overflow-hidden rounded-2xl transition-all duration-300;
@@ -78,12 +57,32 @@
   .btn:hover:before{
     @apply translate-y-0;
   }
+  .video-wrapper{
+    @apply inline-block hover:p-3 hover:text-secondary border transition-all duration-300 relative;
+  }
+  label{
+    @apply pb-1;
+  }
+  input, textarea{
+    @apply p-3 bg-gray-100 text-black;
+  }
+  input{
+    @apply rounded-2xl;
+  }
+  textarea{
+    border-radius:2rem;
+  }
 }
 
 .background{ 
   background:center / cover url('.././assets/imgs/svg/background.svg') no-repeat;
 }
- 
+footer .background{ 
+  transform:rotateX(180deg);
+  height: 60vw;
+  background:bottom / cover url('.././assets/imgs/svg/background.svg') no-repeat;
+}
+
 svg .animation{
   transform-box: fill-box;
 }
@@ -110,6 +109,7 @@ svg .animation{
     transform: rotateZ(5deg);
   }
 }
+#TREE-2,
 #TREES-2 #t2-right{
   animation: rotate-3 4s linear infinite alternate;
 }
@@ -121,12 +121,16 @@ svg .animation{
     transform: rotateZ(-3deg);
   }
 }
+
 #TREES-1 #t1-left{
   animation: rotate-1 4s linear infinite alternate;
 }
+
 #TREES-1 #t1-right{
   animation: rotate-5 4s linear infinite alternate;
 }
+#TREE-1,
+#TREE-3,
 #TREES-1 #t1-middle{
   animation: rotate-2 4s linear infinite alternate ;
 }
@@ -167,6 +171,23 @@ svg .animation{
 #GIRL #hand-2{
   transform-origin: top;
   animation: rotate-5-reverse 2s linear infinite alternate ;
+}
+#Girl #wave{
+  transform-origin: bottom;
+  animation: rotate-5 1s linear infinite alternate ;
+}
+.shape1{
+  transform-origin: center;
+  animation: rotate 5s linear infinite alternate ;
+}
+.shape2{
+  transform-origin: center;
+  animation: rotate 4s linear infinite alternate ;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .triangle{
   color: rgb(54%, 22%, 46%);
