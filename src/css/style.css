@@ -46,7 +46,7 @@
     position:absolute;clip:rect(0,0,0,0);
   }
   .wrapper{
-    @apply md:mt-20 px-10 md:px-40 flex flex-col items-center justify-center;
+    @apply md:mt-20 mt-10 px-5 md:px-40 flex flex-col items-center justify-center;
   }
   .btn {
     @apply relative text-white font-bold text-sm px-10 py-3 mx-1 my-2 inline-block overflow-hidden rounded-2xl transition-all duration-300;
@@ -74,9 +74,7 @@
   textarea{
     border-radius:2rem;
   }
-  .web-wrapper{
-    @apply bg-gray-100 z-50 px-8 py-6 rounded-lg relative;
-  }
+/* Porfolio projects */
   .links{
     @apply inline-block;
   }
@@ -85,13 +83,19 @@
     @apply w-6 h-6 mt-3 mx-1 inline-block;
   }
   .project-container{
-    @apply relative w-full flex my-10;
+    @apply border rounded-lg px-5 py-7 md:border-0 md:p-0 relative w-full md:flex my-10;
   }
   .project-descr-wrapper{
-  @apply w-full md:w-1/2 absolute h-full flex justify-center items-center;
+  @apply w-full md:w-1/2 md:absolute h-full flex justify-center items-center;
   }
   .project-img-wrapper{
-    @apply p-3 w-3/5;
+    @apply md:p-3 md:w-3/5;
+  }
+  .project-title{
+    @apply text-2xl font-bold pt-3 md:pb-4;
+  }
+  .project-text-wrapper{
+    @apply bg-gray-100 z-50 px-4 py-3 md:px-8 md:py-6 rounded-lg relative;
   }
 }
 
