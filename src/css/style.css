@@ -5,6 +5,8 @@
 /*==========================================*/
 /* Reset */
 /*==========================================*/
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+
 @layer base {
   *,
   ::before,
@@ -12,15 +14,15 @@
     @apply border-current;
   }
   html {
-    font-size: 16px;
-  }
-  @media (max-width: 640px) {
-    html {
-      font-size: 15px;
-    }
-  }
-  html {
+    font-size: 1.2vw;
+    font-family: 'Ubuntu', sans-serif;
     font-display: optional;
+
+  }
+  @media (max-width: 768px) {
+    html {
+      font-size: 4vw;
+    }
   }
   body {
     width: 1280px;
@@ -40,164 +42,199 @@
 }
 
 @layer components {
-  .card {
-    @apply w-full h-full text-0 border-current border-2 dark:hover:bg-gray-900 hover:bg-gray-100 hover:text-green-700 cursor-pointer  relative z-50 flex flex-col;
+  .visiblely-hidden{
+    position:absolute;clip:rect(0,0,0,0);
   }
-  .card * {
-    border-color: inherit;
+  .wrapper{
+    @apply md:mt-20 mt-10 px-5 md:px-40 flex flex-col items-center justify-center;
   }
-  .card:hover img {
-    transform: scale(1.1);
+  .btn {
+    @apply relative text-white font-bold text-sm px-10 py-3 mx-1 my-2 inline-block overflow-hidden rounded-2xl transition-all duration-300;
   }
-  .card:hover .card-visit {
-    @apply opacity-100;
+  .btn:before{
+    @apply absolute bottom-0 left-0 w-full h-full bg-white rounded-2xl transition-all duration-300; 
+    content:'';
+    transform:translateY(100%);
   }
-  .card img {
-    @apply transition-transform duration-500;
+  .btn:hover:before{
+    @apply translate-y-0;
   }
-  .card-body {
-    @apply py-2 px-3 text-base;
+  .video-wrapper{
+    @apply inline-block hover:p-3 hover:text-secondary border transition-all duration-300 relative;
   }
-  .card-body .circle {
-    @apply inline-block w-3 h-3 rounded;
+  label{
+    @apply pb-1;
   }
-  .card-text-wrapper {
-    @apply border-2 flex-1 flex justify-center items-center rounded-lg text-center;
+  input, textarea{
+    @apply p-3 bg-gray-100 text-black;
   }
-  .card-text-wrapper .card-text {
-    @apply py-1;
+  input{
+    @apply rounded-2xl;
   }
-  .card-img-wrapper {
-    @apply overflow-hidden border-t flex-grow;
+  textarea{
+    border-radius:2rem;
   }
-  .card-visit {
-    @apply w-full opacity-0 transition-all duration-300 uppercase absolute py-1  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
-    padding: 0 10%;
+/* Porfolio projects */
+  .links{
+    @apply inline-block;
   }
-  .card-visit div {
-    @apply text-center whitespace-nowrap dark:text-gray-400 dark:bg-gray-100 bg-black text-white text-base;
+  .links svg{
+    color:inherit;
+    @apply w-6 h-6 mt-3 mx-1 inline-block;
   }
-  .text-muted {
-    @apply text-gray;
+  .project-container{
+    @apply border rounded-lg px-5 py-7 md:border-0 md:p-0 relative w-full md:flex my-10;
   }
-  .ratio {
-    @apply relative inline-block w-full;
+  .project-descr-wrapper{
+  @apply w-full md:w-1/2 md:absolute h-full flex justify-center items-center;
   }
-  .ratio::before {
-    content: "";
-    padding-top: var(--aspect-ratio);
-    @apply block;
+  .project-img-wrapper{
+    @apply md:p-3 md:w-3/5;
   }
-  .ratio.ratio-sm {
-    --aspect-ratio: 66.6%;
+  .project-title{
+    @apply text-2xl font-bold pt-3 md:pb-4;
   }
-  .ratio.ratio-desktop {
-    --aspect-ratio: 53.6%;
-  }
-  .ratio.ratio-mobile {
-    --aspect-ratio: 181.2%;
-  }
-  .ratio > img,
-  .ratio > video {
-    @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center;
-  }
-  .button {
-    @apply bg-white dark:bg-gray-900 border-2 px-4 py-1 mx-1 relative overflow-hidden inline-block transition-transform duration-300 rounded-full;
-  }
-  .button::before {
-    @apply bg-black dark:bg-gray-300;
-    content: "";
-    position: absolute;
-    width: 105%;
-    top: -50%;
-    left: 0;
-    height: 200%;
-    transition: 0.3s linear;
-    transform: translateY(100%);
-    clip-path: ellipse(60% 50%);
-  }
-  .button span {
-    @apply z-10 relative transition-all duration-300  dark:text-gray-300;
-  }
-  .button.active span,
-  .button:hover span {
-    @apply text-white dark:text-gray-900;
-  }
-  .button.active::before,
-  .button:hover::before {
-    @apply transform translate-y-0;
-  }
-  .body {
-    margin-top: 4.5rem;
-  }
-  #body {
-    animation: scroll 2000ms;
-  }
-  @keyframes scroll {
-    from {
-      transform: translateY(-500%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  .darkMode {
-    @apply mx-2 inline-block w-6 h-6 relative;
-  }
-
-  .darkMode.active::before {
-    @apply opacity-0;
-  }
-  .darkMode.active::after {
-    @apply opacity-100  delay-300;
-  }
-  .darkMode::before,
-  .darkMode::after {
-    content: "";
-    @apply absolute w-full h-full  transition-all duration-300;
-    background: no-repeat center/120%;
-  }
-  .darkMode::before {
-    background-image: url(".././assets/imgs/Sun.svg");
-  }
-  .darkMode::after {
-    @apply opacity-0;
-    background-image: url(".././assets/imgs/moon.svg");
-  }
-  .letter {
-    @apply relative text-justify text-lg;
-  }
-  .letter,
-  .contact {
-    width: 40rem;
-  }
-  .letter::before {
-    content: "";
-    background: no-repeat center/100% url(".././assets/imgs/leaves.svg");
-    @apply w-9 h-10 block my-8 mx-auto;
-  }
-  .highlight.active {
-    @apply relative;
-  }
-  .highlight.active::before {
-    content: "";
-    animation: highlightanimation 1s forwards;
-    @apply absolute h-2 -bottom-1.5 w-0 left-0 bg-green-600 bg-opacity-90;
-  }
-  @keyframes highlightanimation {
-    to {
-      width: 100%;
-    }
-  }
-  .letter ul {
-    list-style: disc;
-  }
-  form input,
-  form textarea {
-    @apply w-full p-3 border;
-  }
-  .leave {
-    @apply w-56 h-56 inline-block absolute;
-    background: no-repeat center/100% url(".././assets/imgs/leave.svg");
+  .project-text-wrapper{
+    @apply bg-gray-100 z-50 px-4 py-3 md:px-8 md:py-6 rounded-lg relative;
   }
 }
+
+.background{ 
+  background:center / cover url('.././assets/imgs/svg/background.svg') no-repeat;
+}
+footer::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  transform:rotateX(180deg);
+  height: 100%;
+  background:bottom / cover url('.././assets/imgs/svg/background.svg') no-repeat;
+}
+@media (max-width: 768px) {
+  footer .background{
+    height: auto;
+  }
+}
+svg .animation{
+  transform-box: fill-box;
+}
+#TREES-2 .animation,
+#TREES-1 .animation{
+  transform-origin: bottom;
+}
+#TREES-2 #t2-left{
+  animation: rotate-5 4s ease-in-out infinite alternate;
+}
+@keyframes rotate-5 {
+  50% {
+    transform: rotateZ(5deg);
+  }
+  100% {
+    transform: rotateZ(-5deg);
+  }
+}
+@keyframes rotate-5-reverse {
+  50% {
+    transform: rotateZ(-5deg);
+  }
+  100% {
+    transform: rotateZ(5deg);
+  }
+}
+#TREE-2,
+#TREES-2 #t2-right{
+  animation: rotate-3 4s linear infinite alternate;
+}
+@keyframes rotate-3 {
+  50% {
+    transform: rotateZ(3deg);
+  }
+  100% {
+    transform: rotateZ(-3deg);
+  }
+}
+
+#TREES-1 #t1-left{
+  animation: rotate-1 4s linear infinite alternate;
+}
+
+#TREES-1 #t1-right{
+  animation: rotate-5 4s linear infinite alternate;
+}
+#TREE-1,
+#TREE-3,
+#TREES-1 #t1-middle{
+  animation: rotate-2 4s linear infinite alternate ;
+}
+@keyframes rotate-2 {
+  50% {
+    transform: rotateZ(2deg);
+  }
+  100% {
+    transform: rotateZ(-2deg);
+  }
+}
+@keyframes rotate-1 {
+  50% {
+    transform: rotateZ(1deg);
+  }
+  100% {
+    transform: rotateZ(-1deg);
+  }
+}
+#BOY-2 #feet{
+  transform-origin: left;
+  animation: rotate-5 0.5s linear infinite alternate ;
+}
+
+#BOY-1 {
+  transform-origin: bottom left;
+  animation: boy 3s linear infinite alternate ;
+}
+@keyframes boy {
+  50% {
+    transform: scale(1.03);
+  }
+}
+#GIRL #hand{
+  transform-origin: top right;
+  animation: rotate-5 2s linear infinite alternate ;
+}
+#GIRL #hand-2{
+  transform-origin: top;
+  animation: rotate-5-reverse 2s linear infinite alternate ;
+}
+#Girl #wave{
+  transform-origin: bottom;
+  animation: rotate-5 1s linear infinite alternate ;
+}
+.shape1{
+  transform-origin: center;
+  animation: rotate 5s linear infinite alternate ;
+}
+.shape2{
+  transform-origin: center;
+  animation: rotate 4s linear infinite alternate ;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.triangle{
+  color: rgb(54%, 22%, 46%);
+}
+.triangle::before{
+  content:'';
+  color: rgba(54%, 22%, 46%,0.3);
+  margin-top: -2.5rem;
+  border: 3rem solid transparent;
+  border-bottom: 4rem solid currentColor;
+}
+.semicircle::before{
+  content:'';
+  @apply absolute transform rotate-45 bg-red-500 rounded-b-full bg-opacity-30 w-20 h-10
+}
+
