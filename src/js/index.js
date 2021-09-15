@@ -3,37 +3,6 @@
 import '../css/style.css';
 import '../assets/font/iconfont.css';
 
-// darkMode
-// const darkModeCommand = {
-//   execute() {
-//     document.getElementById('dark-toggler').addEventListener('click', () => {
-//       document.getElementById('dark-toggler').classList.toggle('active');
-//       document.documentElement.classList.toggle('dark');
-//       if (document.documentElement.classList.contains('dark')) {
-//         // Whenever the user explicitly chooses dark mode
-//         localStorage.theme = 'dark';
-//       } else {
-//         // Whenever the user explicitly chooses light mode
-//         localStorage.theme = 'light';
-//       }
-//     });
-//     this.changeStorageData();
-//   },
-//   changeStorageData() {
-//     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-//     if (
-//       localStorage.theme === 'dark'
-//       || (!('theme' in localStorage)
-//         && window.matchMedia('(prefers-color-scheme: dark)').matches)
-//     ) {
-//       document.documentElement.classList.add('dark');
-//       document.getElementById('dark-toggler').classList.add('active');
-//     } else {
-//       document.documentElement.classList.remove('dark');
-//     }
-//   },
-// };
-
 const LazyVideosCommand = {
   execute() {
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -62,21 +31,6 @@ const LazyVideosCommand = {
   },
 };
 
-// const IsLoadedCommand = {
-//   execute() {
-//     // Hide preloading
-//     if (document.getElementById('preload')) {
-//       setTimeout(() => {
-//         document.getElementById('preload').classList.add('close');
-//       }, 1500);
-//       // Show main documents
-//       setTimeout(() => {
-//         document.body.classList.remove('is_loading');
-//       }, 400);
-//     }
-//   },
-
-// };
 class OnloadCommander {
   constructor() {
     this.stack = [];
