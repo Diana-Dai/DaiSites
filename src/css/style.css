@@ -95,13 +95,11 @@
 }
 
 .background{
-  background-color: linear-gradient(
-    135deg,
-    #bf6ecc 0%,
-    #8f53ce 100%
-  );;
+  background-color: #bf6ecc;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.background-img{
   background-image:url('.././assets/background/background.svg');
 }
 
