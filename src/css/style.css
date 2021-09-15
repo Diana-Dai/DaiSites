@@ -94,7 +94,7 @@
   }
 }
 
-.background{ 
+.background{
   background:center / cover url('.././assets/background/background.svg') no-repeat;
 }
 footer::before{
