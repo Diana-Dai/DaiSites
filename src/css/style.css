@@ -16,8 +16,6 @@
   html {
     font-size: 1.2vw;
     font-family: 'Ubuntu', sans-serif;
-    font-display: optional;
-
   }
   @media (max-width: 1024px) {
     html {
@@ -26,9 +24,6 @@
   }
   body {
     width: 1280px;
-  }
-  @font-face {
-    font-display: swap;
   }
   a {
     @apply cursor-pointer;
@@ -100,7 +95,7 @@
 }
 
 .background{ 
-  background:center / cover url('.././assets/imgs/svg/background.svg') no-repeat;
+  background:center / cover url('.././assets/background/background.svg') no-repeat;
 }
 footer::before{
   content: "";
@@ -110,7 +105,7 @@ footer::before{
   width: 100%; 
   transform:rotateX(180deg);
   height: 100%;
-  background:bottom / cover url('.././assets/imgs/svg/background.svg') no-repeat;
+  background:bottom / cover url('.././assets/background/background.svg') no-repeat;
 }
 @media (max-width: 768px) {
   footer .background{
