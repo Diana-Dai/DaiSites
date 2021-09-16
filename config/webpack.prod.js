@@ -39,7 +39,7 @@ module.exports = merge(common, {
       config: [{
         test: /\.(jpe?g|png)/,
         options: {
-          quality: 5,
+          quality: 1,
         },
       }],
       overrideExtension: true,
