@@ -64,8 +64,6 @@ const playVideoCommand = {
   },
 };
 const commander = new OnloadCommander();
-// commander.add(IsLoadedCommand);
-// commander.add(darkModeCommand);
 commander.add(LazyVideosCommand);
 commander.add(playVideoCommand);
 commander.init();
