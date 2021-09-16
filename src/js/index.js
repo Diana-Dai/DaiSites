@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 import '../css/style.css';
+import '../assets/font/iconfont.css';
 
 const LazyVideosCommand = {
   execute() {
