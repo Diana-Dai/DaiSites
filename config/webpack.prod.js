@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const { merge } = require('webpack-merge');
 
 const paths = require('./paths');
@@ -33,6 +34,19 @@ module.exports = merge(common, {
     ],
   },
   plugins: [
+    // Convert images into webp
+    new ImageminWebpWebpackPlugin({
+      config: [{
+        test: /\.(jpe?g|png)/,
+        options: {
+          quality: 5,
+        },
+      }],
+      overrideExtension: true,
+      detailedLogs: false,
+      silent: false,
+      strict: true,
+    }),
     // Extracts CSS into separate files
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash].css',
