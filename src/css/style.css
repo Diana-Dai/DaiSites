@@ -121,12 +121,13 @@ footer::before{
     height: auto;
   }
 }
+
 svg .animation{
   transform-box: fill-box;
 }
 #TREES-2 .animation,
 #TREES-1 .animation{
-  transform-origin: bottom;
+  transform-origin: center;
 }
 #TREES-2 #t2-left{
   animation: rotate-5 4s ease-in-out infinite alternate;
@@ -189,7 +190,7 @@ svg .animation{
   }
 }
 #BOY-2 #feet{
-  transform-origin: left;
+  /* transform-origin: left; */
   animation: rotate-5 0.5s linear infinite alternate ;
 }
 
