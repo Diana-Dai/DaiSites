@@ -93,43 +93,6 @@
     @apply bg-gray-100 z-50 px-4 py-3 lg:px-8 lg:py-6 rounded-lg relative;
   }
 }
-/* S-Iconfont */
-@font-face {
-  font-family: "iconfont"; /* Project id 2804475 */
-  src: url('../assets/font/iconfont.woff2') format('woff2'),
-       url('../assets/font/iconfont.woff') format('woff'),
-       url('../assets/font/iconfont.ttf') format('truetype');
-  font-display: optional;
-      }
-.iconfont {
-  font-family: "iconfont" !important;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-SEO:before {
-  content: "\e68e";
-}
-
-.icon-devices:before {
-  content: "\e678";
-}
-
-.icon-html:before {
-  content: "\e613";
-}
-
-.icon-accessibility:before {
-  content: "\e6b4";
-}
-
-.icon-js:before {
-  content: "\e6a0";
-}
-
-
-/* E-Iconfont */
 
 .background{
   background-color: #bf6ecc;
