@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2804475 */
-  src: url('iconfont.woff2?t=1631352316426') format('woff2'),
-       url('iconfont.woff?t=1631352316426') format('woff'),
-       url('iconfont.ttf?t=1631352316426') format('truetype');
-      }
+  src: url('iconfont.woff2?t=1635332583997') format('woff2'),
+       url('iconfont.woff?t=1635332583997') format('woff'),
+       url('iconfont.ttf?t=1635332583997') format('truetype');
+}
 
 .iconfont {
   font-family: "iconfont" !important;
@@ -11,7 +11,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-display: swap;
+}
 
+
+.icon-shopify:before {
+  content: "\ea03";
+}
+
+.icon-jiantou:before {
+  content: "\e69b";
 }
 
 .icon-SEO:before {
