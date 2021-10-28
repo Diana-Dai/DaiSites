@@ -242,3 +242,10 @@ svg .animation {
   content: "";
   @apply absolute transform rotate-45 bg-red-500 rounded-b-full bg-opacity-30 w-20 h-10;
 }
+
+.green{
+  color: rgb(29, 114, 67) !important;
+}
+.green::before{
+  color: rgba(29, 114, 67,0.2) !important;
+}
