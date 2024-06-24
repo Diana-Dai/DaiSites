@@ -1,57 +1,9 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 import '../css/style.css';
 import '../assets/font/iconfont.css';
 
-// darkMode
-const darkModeCommand = {
-  execute() {
-    document.getElementById('dark-toggler').addEventListener('click', () => {
-      document.getElementById('dark-toggler').classList.toggle('active');
-      document.documentElement.classList.toggle('dark');
-      if (document.documentElement.classList.contains('dark')) {
-        // Whenever the user explicitly chooses dark mode
-        localStorage.theme = 'dark';
-      } else {
-        // Whenever the user explicitly chooses light mode
-        localStorage.theme = 'light';
-      }
-    });
-    this.changeStorageData();
-  },
-  changeStorageData() {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === 'dark'
-      || (!('theme' in localStorage)
-        && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark');
-      document.getElementById('dark-toggler').classList.add('active');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  },
-};
-
-const StartTextHighLightCommand = {
-  execute() {
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      // When the target item is in viewPoint
-      entries.forEach((item) => {
-        if (item.isIntersecting) {
-          // console.log(entries[0].target);
-          item.target.classList.add('active');
-          intersectionObserver.unobserve(item.target);
-        }
-      });
-    });
-    // Start observing
-    document.querySelectorAll('.highlight').forEach((item) => {
-      intersectionObserver.observe(item);
-    });
-  },
-};
 const LazyVideosCommand = {
   execute() {
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -61,7 +13,10 @@ const LazyVideosCommand = {
           const keys = Object.keys(video.target.children);
           keys.forEach((source) => {
             const videoSource = video.target.children[source];
-            if (typeof videoSource.tagName === 'string' && videoSource.tagName === 'SOURCE') {
+            if (
+              typeof videoSource.tagName === 'string'
+              && videoSource.tagName === 'SOURCE'
+            ) {
               videoSource.src = videoSource.dataset.src;
             }
           });
@@ -80,21 +35,6 @@ const LazyVideosCommand = {
   },
 };
 
-const IsLoadedCommand = {
-  execute() {
-    // Hide preloading
-    if (document.getElementById('preload')) {
-      setTimeout(() => {
-        document.getElementById('preload').classList.add('close');
-      }, 1500);
-      // Show main documents
-      setTimeout(() => {
-        document.body.classList.remove('is_loading');
-      }, 400);
-    }
-  },
-
-};
 class OnloadCommander {
   constructor() {
     this.stack = [];
@@ -112,23 +52,75 @@ class OnloadCommander {
     this.stack.push(action);
   }
 }
+const playVideoCommand = {
+  execute() {
+    document.getElementById('porfolio').addEventListener('mouseover', (e) => {
+      console.log(e.target);
+      if (
+        typeof e.target.tagName === 'string'
+        && e.target.tagName === 'VIDEO'
+      ) {
+        e.target.play();
+      }
+    });
+    document.getElementById('porfolio').addEventListener('mouseout', (e) => {
+      if (
+        typeof e.target.tagName === 'string'
+        && e.target.tagName === 'VIDEO'
+      ) {
+        e.target.pause();
+      }
+    });
+  },
+};
+const addImgSource = {
+  execute() {
+    const pictureTags = document.querySelectorAll('.img-wrapper picture');
+    pictureTags.forEach((pictureTag) => {
+      const imgTag = pictureTag.querySelector('img');
+      const dataSrc = imgTag.getAttribute('data-src');
 
+      // Generate the source of jpeg and webp
+      const res = this.getSrcSet(dataSrc, 'https://res.cloudinary.com/dis84wmjl/image/upload/v1632219688/DaiSites/');
+      const nodes = this.createSourceTag(res);
+
+      nodes.forEach((item) => {
+        pictureTag.insertBefore(item, imgTag);
+      });
+    });
+  },
+  getSrcSet(dataSrc, link) {
+    let res1 = ''; let res2 = '';
+    const widthList = ['320', '640', '750', '1280', '1920'];
+    let [link1, link2] = link.split('upload');
+    link1 += 'upload/q_auto,';
+    widthList.forEach((item) => {
+      res1 += `${link1}w_${item}${link2}${dataSrc} ${item}w,
+      `;
+      res2 += `${link1}f_webp,w_${item}${link2}${dataSrc} ${item}w,
+      `;
+    });
+    console.log(res1);
+    return {
+      'image/webp': res2,
+      'image/jpeg': res1,
+    };
+  },
+  createSourceTag(object) {
+    const node1 = document.createElement('source');
+    const node2 = document.createElement('source');
+    if (typeof object === 'object') {
+      const types = Object.keys(object);
+      node1.srcset = object[types[0]];
+      [node1.type, node2.type] = types;
+      node2.srcset = object[types[1]];
+    }
+    return [node1, node2];
+  },
+};
 const commander = new OnloadCommander();
-commander.add(StartTextHighLightCommand);
-commander.add(IsLoadedCommand);
-commander.add(darkModeCommand);
 commander.add(LazyVideosCommand);
+commander.add(playVideoCommand);
+commander.add(addImgSource);
+
 commander.init();
-
-// const cloneNodes = {
-//   execute() {
-//     for (let i = 0; i < 10; i++) {
-//       const clone = document.getElementById('project_list').cloneNode(true);
-
-//       clone.id = `clone${i}`;
-//       document.getElementById('body').appendChild(clone);
-//     }
-//   },
-// };
-
-// cloneNodes.execute();

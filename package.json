@@ -1,18 +1,22 @@
 {
-  "name": "dev-restaurant",
-  "version": "3.0.0",
-  "description": "A website for restaurant",
+  "name": "daisites",
+  "version": "2.0.0",
+  "description": "I'm a reliable Freelance Web Developer. You can hire me to help with your project today.",
   "main": "index.js",
   "author": "Diana Dai",
   "license": "MIT",
-  "repository": "https://github.com/Diana-Dai/Dev-Restaurant",
+  "repository": "https://github.com/Diana-Dai/daisites",
+  "homepage": "https://www.daisites.com",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "lint": "eslint . src config || true"
   },
   "keywords": [
-    "restaurant"
+    "porfolio",
+    "web development",
+    "freelance",
+    "freelancer"
   ],
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -33,6 +37,7 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^5.3.1",
+    "imagemin-webp-webpack-plugin": "^3.3.6",
     "mini-css-extract-plugin": "^1.4.0",
     "node-sass": "^5.0.0",
     "postcss": "^8.3.6",
@@ -43,6 +48,8 @@
     "webpack": "^5.28.0",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2",
+    "webpack-image-resize-loader": "^4.1.0",
+    "webpack-image-srcset-loader": "^5.0.3",
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
@@ -56,8 +63,10 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "html-critical-webpack-plugin": "^2.1.0",
     "request": "^2.79.0",
     "requests": "^0.3.0",
+    "sharp-image-webpack-loader": "^1.0.3",
     "tailwindcss": "^2.2.7"
   }
 }

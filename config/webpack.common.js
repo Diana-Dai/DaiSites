@@ -42,19 +42,6 @@ module.exports = {
       template: `${paths.src}/index.ejs`, // template file
       filename: 'index.html', // output file
     }),
-    // Generates an HTML file from a template
-    new HtmlWebpackPlugin({
-      title: 'about',
-      favicon: `${paths.src}/assets/imgs/favicon.png`,
-      template: `${paths.src}/about.ejs`, // template file
-      filename: 'about.html', // output file
-    }),
-    new HtmlWebpackPlugin({
-      title: 'contact',
-      favicon: `${paths.src}/assets/imgs/favicon.png`,
-      template: `${paths.src}/contact.ejs`, // template file
-      filename: 'contact.html', // output file
-    }),
   ],
 
   // Determine how modules within the project are treated
